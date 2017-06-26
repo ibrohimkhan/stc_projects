@@ -3,9 +3,12 @@ package ru.innopolis.view;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.List;
@@ -19,6 +22,7 @@ public class ListOfAllStudentActivity extends Activity {
     public static final String ALL_GROUPS = "all_groups";
 
     private ListView listOfAllStudent;
+    private EditText searchStudents;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +32,10 @@ public class ListOfAllStudentActivity extends Activity {
         final List<Student> students = getIntent().getParcelableArrayListExtra(ALL_STUDENTS);
         final List<Group> groups = getIntent().getParcelableArrayListExtra(ALL_GROUPS);
 
-        ArrayAdapter<Student> studentArrayAdapter = new ArrayAdapter<Student>(this, android.R.layout.simple_list_item_1, students);
+        final ArrayAdapter<Student> studentArrayAdapter = new ArrayAdapter<Student>(this, android.R.layout.simple_list_item_1, students);
         listOfAllStudent = (ListView) findViewById(R.id.listOfAllStudents);
         listOfAllStudent.setAdapter(studentArrayAdapter);
+        listOfAllStudent.setTextFilterEnabled(true);
 
         listOfAllStudent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -52,6 +57,22 @@ public class ListOfAllStudentActivity extends Activity {
                 }
 
                 return null;
+            }
+        });
+
+        searchStudents = (EditText) findViewById(R.id.searchStudents);
+        searchStudents.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                studentArrayAdapter.getFilter().filter(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
             }
         });
     }
