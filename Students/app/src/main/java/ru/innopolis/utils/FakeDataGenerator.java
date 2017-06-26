@@ -118,7 +118,6 @@ public class FakeDataGenerator {
 
         users.put("tarra", "tarra");
         students.add(std9);
-
     }
 
     public static List<Group> createGroup() {
@@ -131,14 +130,25 @@ public class FakeDataGenerator {
 
         List<Group> groups = new ArrayList<>();
         Group gr1 = new Group("Math", std1, allLessons.get(0));
+        addStudentsToGroup(std1, gr1);
+
         Group gr2 = new Group("Algorithms", std2, allLessons.get(1));
+        addStudentsToGroup(std2, gr2);
+
         Group gr3 = new Group("Android Programming", std3, allLessons.get(2));
+        addStudentsToGroup(std3, gr3);
 
         groups.add(gr1);
         groups.add(gr2);
         groups.add(gr3);
 
         return groups;
+    }
+
+    private static void addStudentsToGroup(List<Student> students, Group group) {
+        for (Student student : students) {
+            student.setGroupId(group.getGroupId());
+        }
     }
 
     public static List<List<Lesson>> createLessons(List<Student> std1, List<Student> std2, List<Student> std3) {

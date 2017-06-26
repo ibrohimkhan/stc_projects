@@ -3,11 +3,16 @@ package ru.innopolis.view;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import ru.innopolis.model.Student;
 import ru.innopolis.utils.FakeDataGenerator;
 
 public class MainActivity extends Activity {
@@ -38,8 +43,11 @@ public class MainActivity extends Activity {
         boolean valid = FakeDataGenerator.authenticate(username, userpass);
 
         if (valid) {
-            Intent intent = new Intent(this, GroupActivity.class);
-            intent.putExtra(GroupActivity.USERNAME, username);
+            Intent intent = new Intent(this, CategoriesActivity.class);
+
+            intent.putExtra(CategoriesActivity.USERNAME, username);
+            intent.putParcelableArrayListExtra(CategoriesActivity.ALL_STUDENTS, (ArrayList<? extends Parcelable>) FakeDataGenerator.students);
+
             startActivity(intent);
         } else {
             Toast.makeText(this, "Wrong username or password!", Toast.LENGTH_LONG).show();

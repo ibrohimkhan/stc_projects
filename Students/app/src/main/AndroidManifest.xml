@@ -14,6 +14,7 @@
             android:label="Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -23,9 +24,17 @@
         <activity
             android:name=".RegistrationActivity"
             android:label="New Account" />
-        <activity android:name=".NewStudentActivity" android:label="New Student"/>
-        <activity android:name=".GroupActivity" android:label="List of groups"/>
-        <activity android:name=".StudentListActivity" android:label="List of Students"/>
+        <activity
+            android:name=".NewStudentActivity"
+            android:label="New Student" />
+        <activity
+            android:name=".GroupActivity"
+            android:label="List of groups" />
+        <activity
+            android:name=".StudentListActivity"
+            android:label="List of Students" />
+        <activity android:name=".CategoriesActivity" />
+        <activity android:name=".ListOfAllStudentActivity"></activity>
     </application>
 
 </manifest>

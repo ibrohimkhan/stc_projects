@@ -47,6 +47,8 @@ public class StudentDetailActivity extends Activity {
         ListView contactList = (ListView) findViewById(R.id.contactList);
         contactList.setAdapter(adapter);
 
+        if (group == null) return;
+
         JournalListAdapter journalListAdapter = new JournalListAdapter(this, group.getLessons(), student);
         ListView journalList = (ListView) findViewById(R.id.journalList);
         journalList.setAdapter(journalListAdapter);

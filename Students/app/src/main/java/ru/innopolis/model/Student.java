@@ -17,7 +17,7 @@ public class Student implements Parcelable {
     private String lastName;
     private Date dateOfBirth;
     private Long id;
-    private Group group;
+    private Long groupId;
     private List<Contact> contacts;
 
     private Account account;
@@ -52,16 +52,8 @@ public class Student implements Parcelable {
         return id;
     }
 
-    public Group getGroup() {
-        return group;
-    }
-
     public List<Contact> getContacts() {
         return contacts;
-    }
-
-    public void setGroup(Group group) {
-        this.group = group;
     }
 
     public void setContacts(List<Contact> contacts) {
@@ -78,6 +70,14 @@ public class Student implements Parcelable {
 
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public Long getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(Long groupId) {
+        this.groupId = groupId;
     }
 
     public Account getAccount() {
@@ -123,7 +123,7 @@ public class Student implements Parcelable {
         dest.writeString(this.lastName);
         dest.writeLong(this.dateOfBirth != null ? this.dateOfBirth.getTime() : -1);
         dest.writeValue(this.id);
-        dest.writeParcelable(this.group, flags);
+        dest.writeValue(this.groupId);
         dest.writeTypedList(this.contacts);
         dest.writeParcelable(this.account, flags);
     }
@@ -134,7 +134,7 @@ public class Student implements Parcelable {
         long tmpDateOfBirth = in.readLong();
         this.dateOfBirth = tmpDateOfBirth == -1 ? null : new Date(tmpDateOfBirth);
         this.id = (Long) in.readValue(Long.class.getClassLoader());
-        this.group = in.readParcelable(Group.class.getClassLoader());
+        this.groupId = (Long) in.readValue(Long.class.getClassLoader());
         this.contacts = in.createTypedArrayList(Contact.CREATOR);
         this.account = in.readParcelable(Account.class.getClassLoader());
     }
