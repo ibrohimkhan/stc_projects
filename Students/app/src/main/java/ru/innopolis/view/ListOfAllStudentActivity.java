@@ -76,4 +76,16 @@ public class ListOfAllStudentActivity extends Activity {
             }
         });
     }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        searchStudents.setText(savedInstanceState.getString("search"));
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("search", searchStudents.getText().toString());
+    }
 }
