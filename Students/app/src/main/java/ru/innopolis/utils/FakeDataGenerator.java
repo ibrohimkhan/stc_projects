@@ -179,6 +179,7 @@ public class FakeDataGenerator {
                 else if (counter == 2) lesson.setStudents(std3);
 
                 Journal journal = new Journal(date);
+                journal.setLessonId(lesson.getLessonId());
 
                 Map<Student, Boolean> visitors = new HashMap<>();
                 for (int i = 0; i < lesson.getStudents().size(); i++) {

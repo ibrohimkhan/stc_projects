@@ -37,11 +37,11 @@
 
         <activity
             android:name=".StudentListActivity"
-            android:label="List of Students" android:launchMode="singleTask"/>
+            android:label="Students in group" android:launchMode="singleTask"/>
 
-        <activity android:name=".CategoriesActivity" android:launchMode="singleTask"/>
+        <activity android:name=".CategoriesActivity" android:label="Categories" android:launchMode="singleTask"/>
 
-        <activity android:name=".ListOfAllStudentActivity" android:launchMode="singleTask"/>
+        <activity android:name=".ListOfAllStudentActivity" android:label="All students" android:launchMode="singleTask"/>
 
     </application>
 

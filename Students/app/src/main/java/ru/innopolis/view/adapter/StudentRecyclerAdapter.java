@@ -23,22 +23,16 @@ public class StudentRecyclerAdapter extends RecyclerView.Adapter<StudentRecycler
 
     private Group group;
     private List<Student> students;
-    private LayoutInflater inflater;
-    private Context context;
 
-    public StudentRecyclerAdapter(Group group, Context context) {
+    public StudentRecyclerAdapter(Group group) {
         this.group = group;
-        this.context = context;
         this.students = group.getStudents();
-        this.inflater = LayoutInflater.from(context);
     }
 
     @Override
     public StudentViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.student_list_item, parent, false);
-        StudentViewHolder holder = new StudentViewHolder(view);
-
-        return holder;
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.student_list_item, parent, false);
+        return new StudentViewHolder(view);
     }
 
     @Override
@@ -75,10 +69,10 @@ public class StudentRecyclerAdapter extends RecyclerView.Adapter<StudentRecycler
 
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(context, StudentDetailActivity.class);
+            Intent intent = new Intent(v.getContext(), StudentDetailActivity.class);
             intent.putExtra(StudentDetailActivity.STUDENT, student);
             intent.putExtra(StudentDetailActivity.GROUP, group);
-            context.startActivity(intent);
+            v.getContext().startActivity(intent);
         }
     }
 }

@@ -15,6 +15,7 @@ import ru.innopolis.utils.UniqueIdGenerator;
 public class Journal implements Parcelable {
     private Long id;
     private Date date;
+    private Long lessonId;
     private Map<Student, Boolean> listeners;
 
     public Journal(Date date) {
@@ -42,18 +43,36 @@ public class Journal implements Parcelable {
         this.listeners = listeners;
     }
 
-    @Override
-    public int hashCode() {
-        return (int) (21 + id.hashCode() * 42) + (21 + date.hashCode() * 42);
+    public Long getLessonId() {
+        return lessonId;
+    }
+
+    public void setLessonId(Long groupId) {
+        this.lessonId = groupId;
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj == null) return false;
-        if (!(obj instanceof Journal)) return false;
-        if (this.id != ((Journal) obj).getId()) return false;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-        return true;
+        Journal journal = (Journal) o;
+
+        if (!id.equals(journal.id)) return false;
+        if (!date.equals(journal.date)) return false;
+        if (lessonId != null ? !lessonId.equals(journal.lessonId) : journal.lessonId != null)
+            return false;
+        return listeners != null ? listeners.equals(journal.listeners) : journal.listeners == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + date.hashCode();
+        result = 31 * result + (lessonId != null ? lessonId.hashCode() : 0);
+        result = 31 * result + (listeners != null ? listeners.hashCode() : 0);
+        return result;
     }
 
     @Override
@@ -65,6 +84,7 @@ public class Journal implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeValue(this.id);
         dest.writeLong(this.date != null ? this.date.getTime() : -1);
+        dest.writeValue(this.lessonId);
         dest.writeInt(this.listeners.size());
         for (Map.Entry<Student, Boolean> entry : this.listeners.entrySet()) {
             dest.writeParcelable(entry.getKey(), flags);
@@ -76,6 +96,7 @@ public class Journal implements Parcelable {
         this.id = (Long) in.readValue(Long.class.getClassLoader());
         long tmpDate = in.readLong();
         this.date = tmpDate == -1 ? null : new Date(tmpDate);
+        this.lessonId = (Long) in.readValue(Long.class.getClassLoader());
         int listenersSize = in.readInt();
         this.listeners = new HashMap<Student, Boolean>(listenersSize);
         for (int i = 0; i < listenersSize; i++) {

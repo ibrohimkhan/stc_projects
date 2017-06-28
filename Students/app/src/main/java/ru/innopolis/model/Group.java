@@ -54,17 +54,27 @@ public class Group implements Parcelable {
     }
 
     @Override
-    public int hashCode() {
-        return (21 + groupId.hashCode() * 42) + (21 + groupName.hashCode() * 42);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Group group = (Group) o;
+
+        if (!groupId.equals(group.groupId)) return false;
+        if (!groupName.equals(group.groupName)) return false;
+        if (students != null ? !students.equals(group.students) : group.students != null)
+            return false;
+        return lessons != null ? lessons.equals(group.lessons) : group.lessons == null;
+
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj == null) return false;
-        if (!(obj instanceof Group)) return false;
-        if (this.groupId != ((Group) obj).getGroupId()) return false;
-
-        return true;
+    public int hashCode() {
+        int result = groupId.hashCode();
+        result = 31 * result + groupName.hashCode();
+        result = 31 * result + (students != null ? students.hashCode() : 0);
+        result = 31 * result + (lessons != null ? lessons.hashCode() : 0);
+        return result;
     }
 
     @Override

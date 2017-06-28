@@ -22,21 +22,15 @@ import ru.innopolis.view.StudentListActivity;
 public class GroupRecyclerAdapter extends RecyclerView.Adapter<GroupRecyclerAdapter.GroupViewHolder> {
 
     private List<Group> groups;
-    private LayoutInflater inflater;
-    private Context context;
 
-    public GroupRecyclerAdapter(Context context, List<Group> groups) {
-        this.context = context;
+    public GroupRecyclerAdapter(List<Group> groups) {
         this.groups = groups;
-        this.inflater = LayoutInflater.from(context);
     }
 
     @Override
     public GroupViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.group_list_item, parent, false);
-        GroupViewHolder holder = new GroupViewHolder(view);
-
-        return holder;
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.group_list_item, parent, false);
+        return new GroupViewHolder(view);
     }
 
     @Override
@@ -69,9 +63,9 @@ public class GroupRecyclerAdapter extends RecyclerView.Adapter<GroupRecyclerAdap
 
         @Override
         public void onClick(View v) {
-            Intent intent = new Intent(context, StudentListActivity.class);
+            Intent intent = new Intent(v.getContext(), StudentListActivity.class);
             intent.putExtra(StudentListActivity.GROUP, group);
-            context.startActivity(intent);
+            v.getContext().startActivity(intent);
         }
 
         public void listen() {

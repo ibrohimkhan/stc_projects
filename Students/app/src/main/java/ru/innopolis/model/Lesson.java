@@ -24,6 +24,7 @@ public class Lesson implements Parcelable {
 
     public Lesson(String subject) {
         this.subject = subject;
+        this.lessonId = UniqueIdGenerator.generateUid();
     }
 
     public Lesson(Date date, String subject, String description) {
@@ -86,17 +87,34 @@ public class Lesson implements Parcelable {
     }
 
     @Override
-    public int hashCode() {
-        return (int) ((21 + lessonId * 42) + (21 + subject.hashCode() * 42));
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Lesson lesson = (Lesson) o;
+
+        if (!lessonId.equals(lesson.lessonId)) return false;
+        if (date != null ? !date.equals(lesson.date) : lesson.date != null) return false;
+        if (!subject.equals(lesson.subject)) return false;
+        if (description != null ? !description.equals(lesson.description) : lesson.description != null)
+            return false;
+        if (lector != null ? !lector.equals(lesson.lector) : lesson.lector != null) return false;
+        if (students != null ? !students.equals(lesson.students) : lesson.students != null)
+            return false;
+        return journal != null ? journal.equals(lesson.journal) : lesson.journal == null;
+
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj == null) return false;
-        if (!(obj instanceof Lesson)) return false;
-        if (this.lessonId != ((Lesson) obj).getLessonId()) return false;
-
-        return true;
+    public int hashCode() {
+        int result = lessonId.hashCode();
+        result = 31 * result + (date != null ? date.hashCode() : 0);
+        result = 31 * result + subject.hashCode();
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (lector != null ? lector.hashCode() : 0);
+        result = 31 * result + (students != null ? students.hashCode() : 0);
+        result = 31 * result + (journal != null ? journal.hashCode() : 0);
+        return result;
     }
 
     @Override
