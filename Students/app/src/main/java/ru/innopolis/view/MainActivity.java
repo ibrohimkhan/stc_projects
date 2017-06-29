@@ -12,6 +12,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import ru.innopolis.model.Group;
 import ru.innopolis.model.Student;
 import ru.innopolis.utils.FakeDataGenerator;
 
@@ -42,13 +43,24 @@ public class MainActivity extends Activity {
 
         boolean valid = FakeDataGenerator.authenticate(username, userpass);
 
-        if (valid) {
+        if (username.equals("admin") && userpass.equals("admin")) {
             Intent intent = new Intent(this, CategoriesActivity.class);
 
             intent.putExtra(CategoriesActivity.USERNAME, username);
             intent.putParcelableArrayListExtra(CategoriesActivity.ALL_STUDENTS, (ArrayList<? extends Parcelable>) FakeDataGenerator.students);
 
             startActivity(intent);
+
+        } else if (valid) {
+            Student student = FakeDataGenerator.findStudentByAccount(username, userpass);
+            Group group = FakeDataGenerator.findGroupById(student.getGroupId());
+
+            Intent intent = new Intent(this, StudentDetailActivity.class);
+            intent.putExtra(StudentDetailActivity.STUDENT, student);
+            intent.putExtra(StudentDetailActivity.GROUP, group);
+
+            startActivity(intent);
+
         } else {
             Toast.makeText(this, "Wrong username or password!", Toast.LENGTH_LONG).show();
         }

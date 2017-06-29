@@ -25,6 +25,20 @@ public class FakeDataGenerator {
 
     public static Map<String, String> users = new HashMap<>();
     public static List<Student> students = new ArrayList<>();
+    public static Map<String, Student> studentAccount = new HashMap<>();
+    public static List<Group> groups = new ArrayList<>();
+
+    public static Student findStudentByAccount(String username, String password) {
+        return studentAccount.get(username + password);
+    }
+
+    public static Group findGroupById(Long groupId) {
+        for (Group group : groups) {
+            if (group.getGroupId() == groupId) return group;
+        }
+
+        return null;
+    }
 
     public static boolean authenticate(String username, String userpass) {
         String password = users.get(username);
@@ -45,6 +59,7 @@ public class FakeDataGenerator {
         std1.setContacts(contacts);
 
         users.put("john", "doe");
+        studentAccount.put("john" + "doe", std1);
         students.add(std1);
 
         Student std2 = new Student("Jake", "Dilon", new Date(1985, 7, 9));
@@ -54,6 +69,7 @@ public class FakeDataGenerator {
         std2.setContacts(contacts);
 
         users.put("jake", "dilon");
+        studentAccount.put("jake" + "dilon", std2);
         students.add(std2);
 
         Student std3 = new Student("Marry", "Kline", new Date(1978, 9, 7));
@@ -63,6 +79,7 @@ public class FakeDataGenerator {
         std3.setContacts(contacts);
 
         users.put("marry", "kline");
+        studentAccount.put("marry" + "kline", std3);
         students.add(std3);
 
         Student std4 = new Student("Manny", "Glin", new Date(1988, 9, 4));
@@ -72,6 +89,7 @@ public class FakeDataGenerator {
         std4.setContacts(contacts);
 
         users.put("manny", "glin");
+        studentAccount.put("manny" + "glin", std4);
         students.add(std4);
 
         Student std5 = new Student("Marsy", "Gacho", new Date(1998, 3, 7));
@@ -81,6 +99,7 @@ public class FakeDataGenerator {
         std5.setContacts(contacts);
 
         users.put("marsy", "marsy");
+        studentAccount.put("marsy" + "marsy", std5);
         students.add(std5);
 
         Student std6 = new Student("Garry", "Hurry", new Date(1958, 9, 7));
@@ -90,6 +109,7 @@ public class FakeDataGenerator {
         std6.setContacts(contacts);
 
         users.put("garry", "garry");
+        studentAccount.put("garry" + "garry", std6);
         students.add(std6);
 
         Student std7 = new Student("Jane", "Ostin", new Date(1908, 9, 7));
@@ -99,6 +119,7 @@ public class FakeDataGenerator {
         std7.setContacts(contacts);
 
         users.put("jane", "jane");
+        studentAccount.put("jane" + "jane", std7);
         students.add(std7);
 
         Student std8 = new Student("Sarra", "Connor", new Date(1958, 1, 7));
@@ -108,6 +129,7 @@ public class FakeDataGenerator {
         std8.setContacts(contacts);
 
         users.put("sarra", "sarra");
+        studentAccount.put("sarra" + "sarra", std8);
         students.add(std8);
 
         Student std9 = new Student("Tarra", "Honnor", new Date(1958, 1, 9));
@@ -117,6 +139,7 @@ public class FakeDataGenerator {
         std9.setContacts(contacts);
 
         users.put("tarra", "tarra");
+        studentAccount.put("tarra" + "tarra", std9);
         students.add(std9);
     }
 
@@ -128,7 +151,6 @@ public class FakeDataGenerator {
 
         List<List<Lesson>> allLessons = createLessons(std1, std2, std3);
 
-        List<Group> groups = new ArrayList<>();
         Group gr1 = new Group("Math", std1, allLessons.get(0));
         addStudentsToGroup(std1, gr1);
 
