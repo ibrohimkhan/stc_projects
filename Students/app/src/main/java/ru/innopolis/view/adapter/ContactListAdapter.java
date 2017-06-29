@@ -11,6 +11,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import ru.innopolis.model.Contact;
+import ru.innopolis.model.ContactType;
 import ru.innopolis.view.R;
 
 /**

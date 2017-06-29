@@ -1,13 +1,12 @@
 package ru.innopolis.view.adapter;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -18,13 +17,21 @@ import ru.innopolis.view.StudentListActivity;
 /**
  * Created by ibrahim on 6/22/2017.
  */
-
 public class GroupRecyclerAdapter extends RecyclerView.Adapter<GroupRecyclerAdapter.GroupViewHolder> {
 
-    private List<Group> groups;
+    public interface DataListener {
+        void listen(Group group);
+    }
 
-    public GroupRecyclerAdapter(List<Group> groups) {
+    private List<Group> groups;
+    private DataListener listener;
+
+    public GroupRecyclerAdapter(List<Group> groups, DataListener listener) {
         this.groups = groups;
+        this.listener = listener;
+    }
+
+    public GroupRecyclerAdapter() {
     }
 
     @Override
@@ -42,17 +49,23 @@ public class GroupRecyclerAdapter extends RecyclerView.Adapter<GroupRecyclerAdap
     public void onBindViewHolder(GroupViewHolder holder, int position) {
         Group group = groups.get(position);
         holder.setData(group, position);
-        holder.listen();
     }
 
-    class GroupViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class GroupViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnCreateContextMenuListener {
         private TextView groupName;
         private int position;
         private Group group;
 
+        public Group getGroup() {
+            return group;
+        }
+
         public GroupViewHolder(View itemView) {
             super(itemView);
             groupName = (TextView) itemView.findViewById(R.id.txvGroupName);
+
+            itemView.setOnClickListener(this);
+            itemView.setOnCreateContextMenuListener(this);
         }
 
         public void setData(Group group, int position) {
@@ -68,9 +81,10 @@ public class GroupRecyclerAdapter extends RecyclerView.Adapter<GroupRecyclerAdap
             v.getContext().startActivity(intent);
         }
 
-        public void listen() {
-            groupName.setOnClickListener(GroupViewHolder.this);
+        @Override
+        public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+            if (listener != null) listener.listen(group);
+            menu.add(0, R.id.sms, 0, "Send SMS");
         }
     }
-
 }

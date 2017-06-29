@@ -12,8 +12,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Filter;
 import android.widget.ListView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ru.innopolis.model.Group;
@@ -50,7 +52,7 @@ public class ListOfStudentFragment extends Fragment {
         listOfAllStudent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Student student = students.get(position);
+                Student student = studentArrayAdapter.getItem(position);
                 Group group = findStudentGroup(student);
 
                 Intent intent = new Intent(getActivity(), StudentDetailActivity.class);

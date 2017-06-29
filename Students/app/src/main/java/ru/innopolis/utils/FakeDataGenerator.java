@@ -103,7 +103,7 @@ public class FakeDataGenerator {
 
         Student std8 = new Student("Sarra", "Connor", new Date(1958, 1, 7));
         telegram = new Contact("@sarra", ContactType.TELEGRAM, R.drawable.ic_telegram);
-        phone = new Contact("553111213", ContactType.PHONE, R.drawable.ic_phone);
+        phone = new Contact("+79272290858", ContactType.PHONE, R.drawable.ic_phone);
         contacts = Arrays.asList(telegram, phone);
         std8.setContacts(contacts);
 
@@ -162,6 +162,9 @@ public class FakeDataGenerator {
 
         String[] lectorsName = {"Jason McField", "Patric Robertson", "Mia Lue"};
 
+        Contact phone = new Contact("123456789", ContactType.PHONE, R.drawable.ic_phone);
+        List<Contact> contacts = Arrays.asList(phone);
+
         int counter = 0;
         for (String[] subjects : allSubjects) {
             List<Lesson> lessons = new ArrayList<>();
@@ -169,7 +172,10 @@ public class FakeDataGenerator {
 
             for (String subject : subjects) {
                 Lesson lesson = new Lesson(subject);
-                lesson.setLector(new Lector(lectorsName[counter].split(" ")[0], lectorsName[counter].split(" ")[1]));
+
+                Lector lector = new Lector(lectorsName[counter].split(" ")[0], lectorsName[counter].split(" ")[1]);
+                lector.setContacts(contacts);
+                lesson.setLector(lector);
 
                 Date date = new Date(2017, 6, day++);
 

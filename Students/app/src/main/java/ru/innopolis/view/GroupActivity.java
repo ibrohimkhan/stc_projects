@@ -13,7 +13,6 @@ import ru.innopolis.view.fragment.ListOfGroupFragment;
  */
 
 public class GroupActivity extends Activity {
-
     public static final String USERNAME = "username";
 
     @Override
