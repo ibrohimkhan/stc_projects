@@ -46,4 +46,8 @@ public class StudentDataStore {
 
         return null;
     }
+
+    public List<Student> getAllStudents() {
+        return dataStore.getStudents();
+    }
 }

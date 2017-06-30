@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -28,7 +29,7 @@ public class InitialDataStore {
     private List<Account> accounts = new ArrayList<>();
     private List<Lector> lectors = new ArrayList<>();
     private List<Student> students = new ArrayList<>();
-    private Map<String, List<Lesson>> mapLessons = new HashMap<>();
+    private Map<String, List<Lesson>> mapLessons = new LinkedHashMap<>();
     private List<Journal> journals = new ArrayList<>();
     private List<Group> groups = new ArrayList<>();
 
@@ -88,22 +89,24 @@ public class InitialDataStore {
 
         Group math = new Group(titles[0]);
         math.setStudents(Arrays.asList(students.get(0), students.get(1), students.get(2)));
+        math.setLessons(mapLessons.get(titles[0]));
         students.get(0).setGroupId(math.getGroupId());
         students.get(1).setGroupId(math.getGroupId());
         students.get(2).setGroupId(math.getGroupId());
 
         Group algo = new Group(titles[1]);
         algo.setStudents(Arrays.asList(students.get(3), students.get(4), students.get(5)));
+        algo.setLessons(mapLessons.get(titles[1]));
         students.get(3).setGroupId(algo.getGroupId());
         students.get(4).setGroupId(algo.getGroupId());
         students.get(5).setGroupId(algo.getGroupId());
 
         Group andro = new Group(titles[2]);
-        andro.setStudents(Arrays.asList(students.get(6), students.get(7), students.get(8), students.get(9)));
+        andro.setStudents(Arrays.asList(students.get(6), students.get(7), students.get(8)));
+        andro.setLessons(mapLessons.get(titles[2]));
         students.get(6).setGroupId(andro.getGroupId());
         students.get(7).setGroupId(andro.getGroupId());
         students.get(8).setGroupId(andro.getGroupId());
-        students.get(9).setGroupId(andro.getGroupId());
 
         groups.add(math);
         groups.add(algo);
@@ -121,7 +124,6 @@ public class InitialDataStore {
         for (String[] subjects : allSubjects) {
             List<Lesson> lessons = new ArrayList<>();
             int day = 1;
-            int index = counter;
 
             for (String subject : subjects) {
                 Lesson lesson = new Lesson(subject);
@@ -134,15 +136,16 @@ public class InitialDataStore {
                     lesson.setStudents(Arrays.asList(students.get(0), students.get(1), students.get(2)));
                 } else if (counter == 1) {
                     lesson.setStudents(Arrays.asList(students.get(3), students.get(4), students.get(5)));
-                } else if (counter == 3) {
-                    lesson.setStudents(Arrays.asList(students.get(6), students.get(7), students.get(8), students.get(9)));
+                } else if (counter == 2) {
+                    lesson.setStudents(Arrays.asList(students.get(6), students.get(7), students.get(8)));
                 }
 
                 Journal journal = new Journal(date);
                 journal.setLessonId(lesson.getLessonId());
 
                 Map<Student, Boolean> visitors = new HashMap<>();
-                for (int i = 0; i < lesson.getStudents().size(); i++) {
+                int max = lesson.getStudents().size();
+                for (int i = 0; i < max; i++) {
                     Student student = lesson.getStudents().get(i);
                     visitors.put(student, random.nextBoolean());
                 }
@@ -154,8 +157,7 @@ public class InitialDataStore {
                 lessons.add(lesson);
             }
 
-            counter++;
-            mapLessons.put(titles[index++], lessons);
+            mapLessons.put(titles[counter++], lessons);
         }
     }
 

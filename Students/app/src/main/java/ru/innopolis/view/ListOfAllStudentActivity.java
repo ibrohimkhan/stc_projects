@@ -3,18 +3,9 @@ package ru.innopolis.view;
 import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.ListView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import ru.innopolis.model.Group;
 import ru.innopolis.model.Student;

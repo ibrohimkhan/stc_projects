@@ -7,6 +7,8 @@ import ru.innopolis.model.Account;
 import ru.innopolis.model.Student;
 
 public class NewStudentActivity extends Activity {
+
+    public static final String NEW_STUDENT = "new_student";
     private Student student;
 
     @Override
@@ -15,7 +17,7 @@ public class NewStudentActivity extends Activity {
         setContentView(R.layout.activity_new_student);
 
         Bundle bundle = getIntent().getExtras();
-        Account account = bundle.getParcelable("ru.innopolis.model.Account");
+        Account account = bundle.getParcelable(NEW_STUDENT);
 
         student = new Student(account);
     }

@@ -33,4 +33,8 @@ public class GroupDataStore {
 
         return null;
     }
+
+    public List<Group> getAllGroups() {
+        return dataStore.getGroups();
+    }
 }

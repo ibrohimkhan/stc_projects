@@ -1,5 +1,7 @@
 package ru.innopolis.manager;
 
+import java.util.List;
+
 import ru.innopolis.data.GroupDataStore;
 import ru.innopolis.model.Group;
 
@@ -12,5 +14,9 @@ public class GroupManager {
 
     public static Group findGroupById(Long groupId) {
         return groupDataStore.findGroupById(groupId);
+    }
+
+    public static List<Group> getAllGroups() {
+        return groupDataStore.getAllGroups();
     }
 }

@@ -22,7 +22,6 @@ import java.util.List;
 import ru.innopolis.model.Contact;
 import ru.innopolis.model.ContactType;
 import ru.innopolis.model.Group;
-import ru.innopolis.utils.FakeDataGenerator;
 import ru.innopolis.view.R;
 import ru.innopolis.view.adapter.GroupRecyclerAdapter;
 
@@ -32,9 +31,11 @@ import ru.innopolis.view.adapter.GroupRecyclerAdapter;
 
 public class ListOfGroupFragment extends Fragment implements GroupRecyclerAdapter.DataListener {
 
+    public static final String ALL_GROUPS = "all_groups";
+
+    private GroupRecyclerAdapter groupRecyclerAdapter;
     private EditText searchGroup;
     private Group group;
-    private GroupRecyclerAdapter groupRecyclerAdapter;
 
     @Nullable
     @Override
@@ -43,7 +44,8 @@ public class ListOfGroupFragment extends Fragment implements GroupRecyclerAdapte
 
         searchGroup = (EditText) view.findViewById(R.id.searchGroup);
 
-        final List<Group> groups = FakeDataGenerator.createGroup();
+        Bundle bundle = this.getArguments();
+        final List<Group> groups = bundle.getParcelableArrayList(ALL_GROUPS);
 
         final RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.groupRecyclerView);
         groupRecyclerAdapter = new GroupRecyclerAdapter(groups, this);

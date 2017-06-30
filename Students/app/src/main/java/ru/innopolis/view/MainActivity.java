@@ -10,11 +10,13 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
+import ru.innopolis.manager.AccountManager;
+import ru.innopolis.manager.GroupManager;
+import ru.innopolis.manager.InitialDataStoreManager;
+import ru.innopolis.manager.StudentManager;
 import ru.innopolis.model.Group;
 import ru.innopolis.model.Student;
-import ru.innopolis.utils.FakeDataGenerator;
 
 public class MainActivity extends Activity {
 
@@ -28,7 +30,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FakeDataGenerator.createStudents();
+        InitialDataStoreManager.generateInitialData();
 
         loginEditText = (EditText) findViewById(R.id.loginEditText);
         passwordEditText = (EditText) findViewById(R.id.passwordEditText);
@@ -41,19 +43,20 @@ public class MainActivity extends Activity {
         String username = loginEditText.getText().toString();
         String userpass = passwordEditText.getText().toString();
 
-        boolean valid = FakeDataGenerator.authenticate(username, userpass);
+        boolean valid = AccountManager.authenticate(username, userpass);
 
         if (username.equals("admin") && userpass.equals("admin")) {
             Intent intent = new Intent(this, CategoriesActivity.class);
 
             intent.putExtra(CategoriesActivity.USERNAME, username);
-            intent.putParcelableArrayListExtra(CategoriesActivity.ALL_STUDENTS, (ArrayList<? extends Parcelable>) FakeDataGenerator.students);
+            intent.putParcelableArrayListExtra(CategoriesActivity.ALL_STUDENTS,
+                    (ArrayList<? extends Parcelable>) StudentManager.getAllStudents());
 
             startActivity(intent);
 
         } else if (valid) {
-            Student student = FakeDataGenerator.findStudentByAccount(username, userpass);
-            Group group = FakeDataGenerator.findGroupById(student.getGroupId());
+            Student student = StudentManager.findStudentByAccount(username, userpass);
+            Group group = GroupManager.findGroupById(student.getGroupId());
 
             Intent intent = new Intent(this, StudentDetailActivity.class);
             intent.putExtra(StudentDetailActivity.STUDENT, student);

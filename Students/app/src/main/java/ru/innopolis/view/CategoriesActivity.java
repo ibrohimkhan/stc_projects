@@ -8,14 +8,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
+import ru.innopolis.manager.GroupManager;
 import ru.innopolis.model.Student;
-import ru.innopolis.utils.FakeDataGenerator;
 
 
 public class CategoriesActivity extends Activity {
@@ -55,7 +52,8 @@ public class CategoriesActivity extends Activity {
                     case "Students":
                         intent = new Intent(CategoriesActivity.this, ListOfAllStudentActivity.class);
                         intent.putParcelableArrayListExtra(ListOfAllStudentActivity.ALL_STUDENTS, students);
-                        intent.putParcelableArrayListExtra(ListOfAllStudentActivity.ALL_GROUPS, (ArrayList<? extends Parcelable>) FakeDataGenerator.createGroup());
+                        intent.putParcelableArrayListExtra(ListOfAllStudentActivity.ALL_GROUPS,
+                                (ArrayList<? extends Parcelable>) GroupManager.getAllGroups());
 
                         break;
 

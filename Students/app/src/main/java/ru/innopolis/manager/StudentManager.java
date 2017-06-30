@@ -19,4 +19,7 @@ public class StudentManager {
         return studentDataStore.findStudentByAccount(username, password);
     }
 
+    public static List<Student> getAllStudents() {
+        return studentDataStore.getAllStudents();
+    }
 }

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.ContextMenu;
-import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,7 +12,6 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -34,12 +32,10 @@ public class StudentDetailActivity extends Activity {
 
     private EditText firstName;
     private EditText lastName;
-
     private Button backToGroup;
 
     private Student student;
     private Group group;
-
     private ContactListAdapter adapter;
 
     @Override

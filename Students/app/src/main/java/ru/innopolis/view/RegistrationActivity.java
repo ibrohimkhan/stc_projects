@@ -8,8 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import ru.innopolis.manager.AccountManager;
 import ru.innopolis.model.Account;
-import ru.innopolis.utils.FakeDataGenerator;
 
 /**
  * Created by ibrahim on 6/20/2017.
@@ -46,16 +46,11 @@ public class RegistrationActivity extends Activity {
             return;
         }
 
-        boolean isOk = FakeDataGenerator.register(user, pass1);
+        Account account = AccountManager.registerNewAccount(user, pass1);
+        Intent intent = new Intent(this, NewStudentActivity.class);
+        intent.putExtra(NewStudentActivity.NEW_STUDENT, account);
 
-        if (isOk) {
-            Account account = new Account(user, pass1);
-
-            Intent intent = new Intent(this, NewStudentActivity.class);
-            intent.putExtra("ru.innopolis.model.Account", account);
-
-            startActivity(intent);
-        }
+        startActivity(intent);
     }
 
     public void onCancel(View view) {
