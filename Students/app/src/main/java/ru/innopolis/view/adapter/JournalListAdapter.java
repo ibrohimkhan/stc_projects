@@ -8,13 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
-import ru.innopolis.model.Contact;
 import ru.innopolis.model.Lesson;
 import ru.innopolis.model.Student;
 import ru.innopolis.view.R;

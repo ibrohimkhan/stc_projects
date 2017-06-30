@@ -102,7 +102,7 @@ public class ListOfGroupFragment extends Fragment implements GroupRecyclerAdapte
                 if (phone == null) return false;
 
                 Intent intent = new Intent(Intent.ACTION_SENDTO);
-                intent.setData(Uri.parse("smsto:" + phone));  // This ensures only SMS apps respond
+                intent.setData(Uri.parse("smsto:" + phone));
                 intent.putExtra("body", "Where are you, man?");
 
                 startActivity(intent);

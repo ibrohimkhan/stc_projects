@@ -1,6 +1,5 @@
 package ru.innopolis.view.adapter;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -39,7 +38,6 @@ public class StudentRecyclerAdapter extends RecyclerView.Adapter<StudentRecycler
     public void onBindViewHolder(StudentViewHolder holder, int position) {
         Student student = students.get(position);
         holder.setData(student, position);
-        holder.listen();
     }
 
     @Override
@@ -55,16 +53,14 @@ public class StudentRecyclerAdapter extends RecyclerView.Adapter<StudentRecycler
         public StudentViewHolder(View itemView) {
             super(itemView);
             studentName = (TextView) itemView.findViewById(R.id.txvStudentName);
+
+            itemView.setOnClickListener(this);
         }
 
         public void setData(Student student, int position) {
             this.studentName.setText(student.getFirstName() + " " + student.getLastName());
             this.position = position;
             this.student = student;
-        }
-
-        public void listen() {
-            studentName.setOnClickListener(StudentViewHolder.this);
         }
 
         @Override

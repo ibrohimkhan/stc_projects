@@ -84,6 +84,10 @@ public class Student implements Parcelable {
         return account;
     }
 
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
