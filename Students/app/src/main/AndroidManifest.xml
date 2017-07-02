@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ru.innopolis.view">
 
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.SEND_SMS" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,43 +12,40 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:name=".MainActivity"
             android:label="Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".StudentDetailActivity"
             android:label="Student Profile" />
-
         <activity
             android:name=".RegistrationActivity"
             android:label="New Account" />
-
         <activity
             android:name=".NewStudentActivity"
             android:label="New Student" />
-
         <activity
             android:name=".GroupActivity"
-            android:label="List of groups"/>
-
+            android:label="List of groups" />
         <activity
             android:name=".StudentListActivity"
-            android:label="Students in group" android:launchMode="singleTask"/>
-
-        <activity android:name=".CategoriesActivity" android:label="Categories" android:launchMode="singleTask"/>
-
-        <activity android:name=".ListOfAllStudentActivity" android:label="All students" android:launchMode="singleTask"/>
-
+            android:label="Students in group"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".CategoriesActivity"
+            android:label="Categories"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".ListOfAllStudentActivity"
+            android:label="All students"
+            android:launchMode="singleTask" />
+        <activity android:name=".ListOfAllJournalsActivity" android:label="All Journals"/>
     </application>
-
-    <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.SEND_SMS" />
 
 </manifest>

@@ -89,21 +89,30 @@ public class InitialDataStore {
 
         Group math = new Group(titles[0]);
         math.setStudents(Arrays.asList(students.get(0), students.get(1), students.get(2)));
+
+        updateGroupIdInLessons(math, mapLessons.get(titles[0]));
         math.setLessons(mapLessons.get(titles[0]));
+
         students.get(0).setGroupId(math.getGroupId());
         students.get(1).setGroupId(math.getGroupId());
         students.get(2).setGroupId(math.getGroupId());
 
         Group algo = new Group(titles[1]);
         algo.setStudents(Arrays.asList(students.get(3), students.get(4), students.get(5)));
+
+        updateGroupIdInLessons(algo, mapLessons.get(titles[1]));
         algo.setLessons(mapLessons.get(titles[1]));
+
         students.get(3).setGroupId(algo.getGroupId());
         students.get(4).setGroupId(algo.getGroupId());
         students.get(5).setGroupId(algo.getGroupId());
 
         Group andro = new Group(titles[2]);
         andro.setStudents(Arrays.asList(students.get(6), students.get(7), students.get(8)));
+
+        updateGroupIdInLessons(andro, mapLessons.get(titles[2]));
         andro.setLessons(mapLessons.get(titles[2]));
+
         students.get(6).setGroupId(andro.getGroupId());
         students.get(7).setGroupId(andro.getGroupId());
         students.get(8).setGroupId(andro.getGroupId());
@@ -111,6 +120,10 @@ public class InitialDataStore {
         groups.add(math);
         groups.add(algo);
         groups.add(andro);
+    }
+
+    private void updateGroupIdInLessons(Group group, List<Lesson> lessons) {
+        for (Lesson lesson : lessons) lesson.setGroupId(group.getGroupId());
     }
 
     private void generateNewLessons() {

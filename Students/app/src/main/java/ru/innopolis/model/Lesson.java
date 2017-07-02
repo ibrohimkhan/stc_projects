@@ -21,6 +21,7 @@ public class Lesson implements Parcelable {
     private Lector lector;
     private List<Student> students;
     private Journal journal;
+    private Long groupId;
 
     public Lesson(String subject) {
         this.subject = subject;
@@ -86,6 +87,14 @@ public class Lesson implements Parcelable {
         this.journal = journal;
     }
 
+    public Long getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(Long groupId) {
+        this.groupId = groupId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -129,8 +138,9 @@ public class Lesson implements Parcelable {
         dest.writeString(this.subject);
         dest.writeString(this.description);
         dest.writeParcelable(this.lector, flags);
-        dest.writeList(this.students);
+        dest.writeTypedList(this.students);
         dest.writeParcelable(this.journal, flags);
+        dest.writeValue(this.groupId);
     }
 
     protected Lesson(Parcel in) {
@@ -140,12 +150,12 @@ public class Lesson implements Parcelable {
         this.subject = in.readString();
         this.description = in.readString();
         this.lector = in.readParcelable(Lector.class.getClassLoader());
-        this.students = new ArrayList<Student>();
-        in.readList(this.students, Student.class.getClassLoader());
+        this.students = in.createTypedArrayList(Student.CREATOR);
         this.journal = in.readParcelable(Journal.class.getClassLoader());
+        this.groupId = (Long) in.readValue(Long.class.getClassLoader());
     }
 
-    public static final Parcelable.Creator<Lesson> CREATOR = new Parcelable.Creator<Lesson>() {
+    public static final Creator<Lesson> CREATOR = new Creator<Lesson>() {
         @Override
         public Lesson createFromParcel(Parcel source) {
             return new Lesson(source);
