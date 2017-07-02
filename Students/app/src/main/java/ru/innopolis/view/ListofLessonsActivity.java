@@ -7,26 +7,26 @@ import android.os.Bundle;
 import java.util.ArrayList;
 
 import ru.innopolis.model.Group;
-import ru.innopolis.view.fragment.ListOfAllJournalsFragment;
+import ru.innopolis.view.fragment.ListOfLessonsFragmenr;
 
-public class ListOfAllJournalsActivity extends Activity {
+public class ListofLessonsActivity extends Activity {
 
     public static final String ALL_GROUPS = "all_groups";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_of_all_journals);
+        setContentView(R.layout.activity_listof_lessons);
 
         ArrayList<Group> groups = getIntent().getParcelableArrayListExtra(ALL_GROUPS);
         Bundle bundle = new Bundle();
-        bundle.putParcelableArrayList(ListOfAllJournalsFragment.ALL_GROUPS, groups);
+        bundle.putParcelableArrayList(ListOfLessonsFragmenr.ALL_GROUPS, groups);
 
-        ListOfAllJournalsFragment fragment = new ListOfAllJournalsFragment();
-        fragment.setArguments(bundle);
+        ListOfLessonsFragmenr fragmenr = new ListOfLessonsFragmenr();
+        fragmenr.setArguments(bundle);
 
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.listOfAllJournalsActivity, fragment);
+        transaction.replace(R.id.listOfLessonsActivity, fragmenr);
         transaction.commit();
     }
 }

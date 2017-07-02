@@ -45,7 +45,11 @@
             android:name=".ListOfAllStudentActivity"
             android:label="All students"
             android:launchMode="singleTask" />
-        <activity android:name=".ListOfAllJournalsActivity" android:label="All Journals"/>
+        <activity
+            android:name=".ListOfAllJournalsActivity"
+            android:label="All Journals" />
+        <activity android:name=".ListofLessonsActivity" android:label="List of all lessons" />
+        <activity android:name=".EditLessonActivity" android:label="Edit Lesson" />
     </application>
 
 </manifest>

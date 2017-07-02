@@ -65,7 +65,9 @@ public class CategoriesActivity extends Activity {
                         break;
 
                     case "Lessons":
-
+                        intent = new Intent(CategoriesActivity.this, ListofLessonsActivity.class);
+                        intent.putParcelableArrayListExtra(ListofLessonsActivity.ALL_GROUPS, groups);
+                        
                         break;
 
                 }

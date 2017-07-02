@@ -15,6 +15,7 @@ import java.util.Map;
 import ru.innopolis.model.Journal;
 import ru.innopolis.model.Lesson;
 import ru.innopolis.model.Student;
+import ru.innopolis.utils.DateUtils;
 import ru.innopolis.view.R;
 
 /**
@@ -66,8 +67,7 @@ public class JournalRecyclerAdapter extends RecyclerView.Adapter<JournalRecycler
         }
 
         public void bind(Lesson lesson, Journal journal) {
-            SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yy h:mm", Locale.ENGLISH);
-            String time = formatter.format(journal.getDate());
+            String time = DateUtils.formatDateToString(journal.getDate());
 
             dateOfRegister.setText(time);
             lessonSubject.setText(lesson.getSubject());

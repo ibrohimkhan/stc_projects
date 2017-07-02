@@ -28,7 +28,7 @@ public class GroupDataStore {
         List<Group> groups = dataStore.getGroups();
 
         for (Group group : groups) {
-            if (group.getGroupId() == groupId) return group;
+            if (group.getGroupId().equals(groupId)) return group;
         }
 
         return null;
