@@ -11,19 +11,17 @@ import ru.innopolis.model.Lesson;
  */
 
 public class LessonDataStore {
-    private static LessonDataStore instance;
     private InitialDataStore dataStore = InitialDataStore.getInstance();
     private GroupDataStore groupDataStore = GroupDataStore.getInstance();
 
     private LessonDataStore() {}
 
+    private static class Helper {
+        private static final LessonDataStore INSTANCE = new LessonDataStore();
+    }
+
     public static LessonDataStore getInstance() {
-        if (instance == null) {
-            synchronized (LessonDataStore.class) {
-                if (instance == null) instance = new LessonDataStore();
-            }
-        }
-        return instance;
+        return Helper.INSTANCE;
     }
 
     public void updateLesson(Lesson lesson) {

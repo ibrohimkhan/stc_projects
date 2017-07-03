@@ -9,19 +9,16 @@ import ru.innopolis.model.Group;
  */
 
 public class GroupDataStore {
-    private static GroupDataStore instance;
     private InitialDataStore dataStore = InitialDataStore.getInstance();
 
     private GroupDataStore() {}
 
-    public static GroupDataStore getInstance() {
-        if (instance == null) {
-            synchronized (GroupDataStore.class) {
-                if (instance == null) instance = new GroupDataStore();
-            }
-        }
+    private static class Helper {
+        private static final GroupDataStore INSTANCE = new GroupDataStore();
+    }
 
-        return instance;
+    public static GroupDataStore getInstance() {
+        return Helper.INSTANCE;
     }
 
     public Group findGroupById(Long groupId) {

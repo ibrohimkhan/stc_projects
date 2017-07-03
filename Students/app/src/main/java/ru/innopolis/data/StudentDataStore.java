@@ -11,23 +11,17 @@ import ru.innopolis.model.Student;
 
 public class StudentDataStore {
 
-    private static StudentDataStore instance;
-
     private InitialDataStore dataStore = InitialDataStore.getInstance();
     private AccountDataStore accountDataStore = AccountDataStore.getInstance();
 
     private StudentDataStore() {}
 
-    public static StudentDataStore getInstance() {
-        if (instance == null) {
-            synchronized (StudentDataStore.class) {
-                if (instance == null) {
-                    instance = new StudentDataStore();
-                }
-            }
-        }
+    private static class Helper {
+        private static final StudentDataStore INSTANCE = new StudentDataStore();
+    }
 
-        return instance;
+    public static StudentDataStore getInstance() {
+        return Helper.INSTANCE;
     }
 
     public Student findStudentByAccount(String username, String password) {

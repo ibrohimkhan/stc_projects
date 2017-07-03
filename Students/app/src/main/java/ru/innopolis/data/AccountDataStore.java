@@ -9,19 +9,16 @@ import ru.innopolis.model.Account;
  */
 
 public class AccountDataStore {
-    private static AccountDataStore instance;
-    private InitialDataStore dataStore = InitialDataStore.getInstance();
 
+    private InitialDataStore dataStore = InitialDataStore.getInstance();
     private AccountDataStore() {}
 
-    public static AccountDataStore getInstance() {
-        if (instance == null) {
-            synchronized (AccountDataStore.class) {
-                if (instance == null) instance = new AccountDataStore();
-            }
-        }
+    private static class Helper {
+        private static final AccountDataStore INSTANCE = new AccountDataStore();
+    }
 
-        return instance;
+    public static AccountDataStore getInstance() {
+        return Helper.INSTANCE;
     }
 
     public Account registerNewAccount(String username, String password) {

@@ -35,18 +35,14 @@ public class InitialDataStore {
 
     private static final String[] titles = {"Math", "Algorithms", "Android Programming"};
 
-    private static InitialDataStore instance;
-
     private InitialDataStore() {}
 
-    public static InitialDataStore getInstance() {
-        if (instance == null) {
-            synchronized (InitialDataStore.class) {
-                if (instance == null) instance = new InitialDataStore();
-            }
-        }
+    private static class Helper {
+        private static final InitialDataStore INSTANCE = new InitialDataStore();
+    }
 
-        return instance;
+    public static InitialDataStore getInstance() {
+        return Helper.INSTANCE;
     }
 
     public List<Account> getAccounts() {
