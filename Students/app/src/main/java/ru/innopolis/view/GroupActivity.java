@@ -7,17 +7,17 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import ru.innopolis.manager.GroupManager;
 import ru.innopolis.model.Group;
+import ru.innopolis.view.component.BaseActivity;
 import ru.innopolis.view.fragment.ListOfGroupFragment;
 
 /**
  * Created by ibrahim on 6/22/2017.
  */
 
-public class GroupActivity extends Activity {
+public class GroupActivity extends BaseActivity {
     public static final String USERNAME = "username";
     private ArrayList<Group> groups = (ArrayList<Group>) GroupManager.getAllGroups();
 

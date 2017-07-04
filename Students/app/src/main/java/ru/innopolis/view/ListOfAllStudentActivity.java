@@ -9,9 +9,10 @@ import java.util.ArrayList;
 
 import ru.innopolis.model.Group;
 import ru.innopolis.model.Student;
+import ru.innopolis.view.component.BaseActivity;
 import ru.innopolis.view.fragment.ListOfStudentFragment;
 
-public class ListOfAllStudentActivity extends Activity {
+public class ListOfAllStudentActivity extends BaseActivity {
 
     public static final String ALL_STUDENTS = "all_students";
     public static final String ALL_GROUPS = "all_groups";

@@ -10,9 +10,10 @@ import android.support.v7.widget.RecyclerView;
 
 import ru.innopolis.model.Group;
 import ru.innopolis.view.adapter.StudentRecyclerAdapter;
+import ru.innopolis.view.component.BaseActivity;
 import ru.innopolis.view.fragment.StudentListInGroupFragment;
 
-public class StudentListActivity extends Activity {
+public class StudentListActivity extends BaseActivity {
 
     public static final String GROUP = "group";
 

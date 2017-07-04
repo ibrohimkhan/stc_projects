@@ -21,6 +21,7 @@ import ru.innopolis.view.R;
 
 /**
  * Created by ibrahim on 6/30/2017.
+ * https://en.wikipedia.org/wiki/Initialization-on-demand_holder_idiom#Example_Java_Implementation
  */
 
 public class InitialDataStore {

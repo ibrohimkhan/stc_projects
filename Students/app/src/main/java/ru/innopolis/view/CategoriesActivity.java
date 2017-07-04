@@ -1,9 +1,7 @@
 package ru.innopolis.view;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -14,9 +12,10 @@ import java.util.ArrayList;
 import ru.innopolis.manager.GroupManager;
 import ru.innopolis.model.Group;
 import ru.innopolis.model.Student;
+import ru.innopolis.view.component.BaseActivity;
 
 
-public class CategoriesActivity extends Activity {
+public class CategoriesActivity extends BaseActivity {
 
     public static final String USERNAME = "username";
     public static final String ALL_STUDENTS = "all_students";
@@ -75,5 +74,7 @@ public class CategoriesActivity extends Activity {
                 startActivity(intent);
             }
         });
+
+
     }
 }

@@ -21,12 +21,13 @@ import ru.innopolis.model.Group;
 import ru.innopolis.model.Student;
 import ru.innopolis.view.adapter.ContactListAdapter;
 import ru.innopolis.view.adapter.JournalListAdapter;
+import ru.innopolis.view.component.BaseActivity;
 
 /**
  * Created by ibrahim on 6/20/2017.
  */
 
-public class StudentDetailActivity extends Activity {
+public class StudentDetailActivity extends BaseActivity {
     public static final String STUDENT = "student";
     public static final String GROUP = "group";
 

@@ -22,8 +22,9 @@ import ru.innopolis.manager.LessonManager;
 import ru.innopolis.model.Group;
 import ru.innopolis.model.Lesson;
 import ru.innopolis.utils.DateUtils;
+import ru.innopolis.view.component.BaseActivity;
 
-public class EditLessonActivity extends Activity {
+public class EditLessonActivity extends BaseActivity {
 
     public static final String LESSON = "lesson";
 

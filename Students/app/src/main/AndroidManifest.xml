@@ -48,8 +48,13 @@
         <activity
             android:name=".ListOfAllJournalsActivity"
             android:label="All Journals" />
-        <activity android:name=".ListofLessonsActivity" android:label="List of all lessons" />
-        <activity android:name=".EditLessonActivity" android:label="Edit Lesson" />
+        <activity
+            android:name=".ListofLessonsActivity"
+            android:label="List of all lessons" />
+        <activity
+            android:name=".EditLessonActivity"
+            android:label="Edit Lesson" />
+        <activity android:name=".component.BaseActivity"></activity>
     </application>
 
 </manifest>

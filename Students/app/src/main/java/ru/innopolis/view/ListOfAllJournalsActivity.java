@@ -7,9 +7,10 @@ import android.os.Bundle;
 import java.util.ArrayList;
 
 import ru.innopolis.model.Group;
+import ru.innopolis.view.component.BaseActivity;
 import ru.innopolis.view.fragment.ListOfAllJournalsFragment;
 
-public class ListOfAllJournalsActivity extends Activity {
+public class ListOfAllJournalsActivity extends BaseActivity {
 
     public static final String ALL_GROUPS = "all_groups";
 
