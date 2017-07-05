@@ -8,9 +8,11 @@
     tools:context="ru.innopolis.justchat.MainActivity">
 
     <EditText
-        android:id="@+id/username"
-        android:hint="username"
+        android:id="@+id/email"
+        android:inputType="textEmailAddress"
+        android:hint="email"
         android:padding="5dp"
+        android:layout_marginTop="50dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginBottom="20dp"
@@ -30,11 +32,14 @@
 
     <LinearLayout
         android:orientation="horizontal"
+        android:gravity="bottom"
+        android:layout_marginBottom="40dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <Button
             android:id="@+id/login"
+            android:layout_marginRight="20dp"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="Login" />
