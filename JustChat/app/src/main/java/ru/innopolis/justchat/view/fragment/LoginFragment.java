@@ -1,22 +1,29 @@
-package ru.innopolis.justchat;
+package ru.innopolis.justchat.view.fragment;
 
-import android.app.Activity;
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.concurrent.ExecutionException;
 
+import ru.innopolis.justchat.R;
 import ru.innopolis.justchat.manager.AccountManager;
 import ru.innopolis.justchat.model.User;
-import ru.innopolis.justchat.view.ConfigurationActivity;
 import ru.innopolis.justchat.view.RegistrationActivity;
+import ru.innopolis.justchat.view.UserConfigurationActivity;
 
-public class MainActivity extends Activity {
+/**
+ * Created by ibrahim on 7/7/2017.
+ */
+
+public class LoginFragment extends Fragment {
 
     private EditText email;
     private EditText password;
@@ -25,15 +32,14 @@ public class MainActivity extends Activity {
     private Button register;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.login_fragment, container, false);
 
-        email = (EditText) findViewById(R.id.email);
-        password = (EditText) findViewById(R.id.password);
+        email = (EditText) view.findViewById(R.id.email);
+        password = (EditText) view.findViewById(R.id.password);
 
-        login = (Button) findViewById(R.id.login);
-        register = (Button) findViewById(R.id.register);
+        login = (Button) view.findViewById(R.id.login);
+        register = (Button) view.findViewById(R.id.register);
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,10 +57,10 @@ public class MainActivity extends Activity {
                     e.printStackTrace();
                 }
 
-                if (user == null) Toast.makeText(MainActivity.this, "Something went wrong :(", Toast.LENGTH_LONG).show();
+                if (user == null) Toast.makeText(getActivity(), "Something went wrong :(", Toast.LENGTH_LONG).show();
                 else {
-                    Intent intent = new Intent(MainActivity.this, ConfigurationActivity.class);
-                    intent.putExtra(ConfigurationActivity.USER, user);
+                    Intent intent = new Intent(getActivity(), UserConfigurationActivity.class);
+                    intent.putExtra(UserConfigurationActivity.USER, user);
                     startActivity(intent);
                 }
             }
@@ -63,10 +69,12 @@ public class MainActivity extends Activity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, RegistrationActivity.class);
+                Intent intent = new Intent(getActivity(), RegistrationActivity.class);
                 startActivity(intent);
             }
         });
+
+        return view;
     }
 
     AsyncTask<String, Void, User> authentication = new AsyncTask<String, Void, User>() {

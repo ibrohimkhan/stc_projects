@@ -11,6 +11,11 @@ public class RegistrationForm {
     private String password;
 
     public RegistrationForm(String firstName, String lastName, String email, String password) {
+
+        if (firstName == null || firstName.isEmpty() || lastName == null || lastName.isEmpty() ||
+                email == null || email.isEmpty() || password == null || password.isEmpty())
+            throw new IllegalArgumentException();
+
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

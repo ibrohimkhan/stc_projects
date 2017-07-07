@@ -4,11 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="ru.innopolis.justchat.view.MainActivity">
+    tools:context="ru.innopolis.justchat.view.UserConfigurationActivity">
 
-    <fragment
-        android:id="@+id/login_fragment"
-        class="ru.innopolis.justchat.view.fragment.LoginFragment"
+    <FrameLayout
+        android:id="@+id/user_config_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

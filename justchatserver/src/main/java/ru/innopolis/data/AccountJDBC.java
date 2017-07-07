@@ -35,4 +35,15 @@ public class AccountJDBC implements IAccount {
         return id;
     }
 
+    public Long findAccountId(Account account) {
+        String sql = "select id from account where email = :email and password = :password";
+
+        try (Connection connection = sql2o.open()) {
+            return connection.createQuery(sql)
+                    .addParameter("email", account.getEmail())
+                    .addParameter("password", account.getPassword())
+                    .executeAndFetch(Long.class).get(0);
+        }
+    }
+
 }

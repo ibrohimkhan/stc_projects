@@ -7,7 +7,6 @@ import ru.innopolis.entity.User;
 import ru.innopolis.service.AccountService;
 import ru.innopolis.service.UserService;
 
-import static spark.Spark.get;
 import static spark.Spark.port;
 import static spark.Spark.post;
 

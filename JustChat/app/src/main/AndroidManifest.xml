@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".view.MainActivity"
             android:label="Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +23,7 @@
         <activity
             android:name=".view.RegistrationActivity"
             android:label="Registration" />
-        <activity android:name=".view.ConfigurationActivity" />
+        <activity android:name=".view.UserConfigurationActivity" />
         <activity android:name=".view.BaseActivity"></activity>
     </application>
 

@@ -67,6 +67,10 @@ public class User {
         return account;
     }
 
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

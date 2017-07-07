@@ -40,13 +40,20 @@ public class UserJDBC implements IUser {
 
     @Override
     public User findUserByAccount(Account account) {
-        String sql = "select * from chatuser where account_id = :id";
+        Long id = AccountJDBC.getInstance().findAccountId(account);
+        account.setId(id);
+
+        String sql = "select id, firstname, lastname, type, state from chatuser where account_id = :account_id";
         User user = null;
 
         try (Connection connection = sql2o.open()) {
-            user = connection.createQuery(sql).addParameter("id", account.getId()).executeAndFetch(User.class).get(0);
+            user = connection.createQuery(sql)
+                    .addParameter("account_id", account.getId())
+                    .executeAndFetch(User.class)
+                    .get(0);
         }
 
+        user.setAccount(account);
         return user;
     }
 }

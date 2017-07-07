@@ -1,7 +1,5 @@
 package ru.innopolis.justchat.manager;
 
-import java.util.IllegalFormatException;
-
 import ru.innopolis.justchat.model.Account;
 import ru.innopolis.justchat.model.RegistrationForm;
 import ru.innopolis.justchat.model.User;

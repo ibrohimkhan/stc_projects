@@ -2,17 +2,14 @@ package ru.innopolis.justchat.view;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.MenuItem;
 
-public class BaseActivity extends Activity {
+import ru.innopolis.justchat.R;
+
+public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        return super.onOptionsItemSelected(item);
+        setContentView(R.layout.activity_main);
     }
 }
