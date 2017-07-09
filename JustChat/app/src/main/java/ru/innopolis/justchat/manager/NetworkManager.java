@@ -56,6 +56,19 @@ public class NetworkManager {
         return user;
     }
 
+    public static void connection(User user) {
+        try {
+            Gson gson = new Gson();
+            String json = gson.toJson(user);
+            String responce = post(IP_ADDRESS + "/connect", json);
+
+            // something to do here
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private static String post(String url, String json) throws IOException {
         OkHttpClient client = new OkHttpClient();
 

@@ -3,6 +3,7 @@ package ru.innopolis.data;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import ru.innopolis.entity.Account;
+import ru.innopolis.entity.State;
 import ru.innopolis.entity.User;
 
 /**
@@ -53,7 +54,22 @@ public class UserJDBC implements IUser {
                     .get(0);
         }
 
-        user.setAccount(account);
+        if (user != null) user.setAccount(account);
+
         return user;
+    }
+
+    @Override
+    public void updateUser(User user) {
+        String sql = "update chatuser set state = :state, type = :type, language = :language where id = :id";
+
+        try (Connection connection = sql2o.open()) {
+            connection.createQuery(sql)
+                    .addParameter("state", user.getState().name())
+                    .addParameter("type", user.getType().name())
+                    .addParameter("language", user.getLanguage().getLanguage())
+                    .addParameter("id", user.getId())
+                    .executeUpdate().getResult();
+        }
     }
 }

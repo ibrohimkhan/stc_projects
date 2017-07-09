@@ -45,5 +45,4 @@ public class AccountJDBC implements IAccount {
                     .executeAndFetch(Long.class).get(0);
         }
     }
-
 }

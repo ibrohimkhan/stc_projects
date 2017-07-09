@@ -15,6 +15,7 @@ public class User implements Parcelable {
     private Account account;
     private UserType type;
     private State state;
+    private Language language;
 
     public User(Account account) {
         this.account = account;
@@ -66,6 +67,14 @@ public class User implements Parcelable {
         this.id = id;
     }
 
+    public Language getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(Language language) {
+        this.language = language;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -108,6 +117,7 @@ public class User implements Parcelable {
         dest.writeParcelable(this.account, flags);
         dest.writeInt(this.type == null ? -1 : this.type.ordinal());
         dest.writeInt(this.state == null ? -1 : this.state.ordinal());
+        dest.writeParcelable(this.language, flags);
     }
 
     protected User(Parcel in) {
@@ -119,9 +129,10 @@ public class User implements Parcelable {
         this.type = tmpType == -1 ? null : UserType.values()[tmpType];
         int tmpState = in.readInt();
         this.state = tmpState == -1 ? null : State.values()[tmpState];
+        this.language = in.readParcelable(Language.class.getClassLoader());
     }
 
-    public static final Parcelable.Creator<User> CREATOR = new Parcelable.Creator<User>() {
+    public static final Creator<User> CREATOR = new Creator<User>() {
         @Override
         public User createFromParcel(Parcel source) {
             return new User(source);

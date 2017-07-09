@@ -8,5 +8,5 @@ public enum State {
     ONLINE,
     OFFLINE,
     ACTIVE,
-    PASSIVE
+    WAITING
 }

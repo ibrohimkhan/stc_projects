@@ -3,6 +3,7 @@ package ru.innopolis;
 import com.google.gson.Gson;
 import ru.innopolis.entity.Account;
 import ru.innopolis.entity.RegistrationForm;
+import ru.innopolis.entity.State;
 import ru.innopolis.entity.User;
 import ru.innopolis.service.AccountService;
 import ru.innopolis.service.UserService;
@@ -25,9 +26,16 @@ public class App {
             Account account = gson.fromJson(body, Account.class);
             User user = UserService.findUserByAccount(account);
 
-            response.status(200);
             response.type("application/json");
-            String result = gson.toJson(user);
+            String result = null;
+
+            if (user != null) {
+                response.status(200);
+                result = gson.toJson(user);
+            } else {
+                response.status(500);
+                result = "Something went wrong!";
+            }
 
             return result;
         });
@@ -51,5 +59,17 @@ public class App {
 
             return result;
         });
+
+        post("/connect", ((request, response) -> {
+            Gson gson = new Gson();
+            String body = request.body();
+
+            User user = gson.fromJson(body, User.class);
+            UserService.updateUserState(user);
+
+            User user2 = null;
+
+            return null;
+        }));
     }
 }

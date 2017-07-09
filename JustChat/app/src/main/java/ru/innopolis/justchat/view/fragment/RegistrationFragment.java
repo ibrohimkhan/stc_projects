@@ -51,7 +51,10 @@ public class RegistrationFragment extends Fragment {
         ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!password1.getText().toString().equals(password2.getText().toString())) return;
+                if (!fieldsValidation()) {
+                    Toast.makeText(getActivity(), "Fill out all fields correctly, please!", Toast.LENGTH_LONG).show();
+                    return;
+                }
 
                 RegistrationForm form = new RegistrationForm(firstName.getText().toString(),
                         lastName.getText().toString(),
@@ -74,6 +77,22 @@ public class RegistrationFragment extends Fragment {
                     intent.putExtra(UserConfigurationActivity.USER, user);
                     startActivity(intent);
                 }
+            }
+
+            private boolean fieldsValidation() {
+                String fName = firstName.getText().toString();
+                String lName = lastName.getText().toString();
+                String mail = email.getText().toString();
+                String pass1 = password1.getText().toString();
+                String pass2 = password2.getText().toString();
+
+                if (fName.isEmpty() || lName.isEmpty() || mail.isEmpty() || pass1.isEmpty() || pass2.isEmpty()) {
+                    return false;
+                }
+
+                if (!pass1.equals(pass2)) return false;
+
+                return true;
             }
         });
 

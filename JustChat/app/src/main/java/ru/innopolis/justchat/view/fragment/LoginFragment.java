@@ -47,6 +47,11 @@ public class LoginFragment extends Fragment {
                 String userEmail = email.getText().toString();
                 String userPassword = password.getText().toString();
 
+                if (userEmail == null || userEmail.isEmpty() || userPassword == null || userPassword.isEmpty()) {
+                    Toast.makeText(getActivity(), "Fill out all fields correctly, please!", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
                 User user = null;
                 try {
                     user = authentication.execute(userEmail, userPassword).get();

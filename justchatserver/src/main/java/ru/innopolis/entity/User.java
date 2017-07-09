@@ -12,6 +12,7 @@ public class User {
     private Account account;
     private UserType type;
     private State state;
+    private Language language;
 
     public User(Account account) {
         this.account = account;
@@ -71,6 +72,14 @@ public class User {
         this.account = account;
     }
 
+    public Language getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(Language language) {
+        this.language = language;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -79,24 +88,23 @@ public class User {
         User user = (User) o;
 
         if (id != null ? !id.equals(user.id) : user.id != null) return false;
-        if (firstName != null ? !firstName.equals(user.firstName) : user.firstName != null)
-            return false;
-        if (lastName != null ? !lastName.equals(user.lastName) : user.lastName != null)
-            return false;
+        if (!firstName.equals(user.firstName)) return false;
+        if (!lastName.equals(user.lastName)) return false;
         if (!account.equals(user.account)) return false;
         if (type != user.type) return false;
-        return state == user.state;
-
+        if (state != user.state) return false;
+        return language != null ? language.equals(user.language) : user.language == null;
     }
 
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
-        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
+        result = 31 * result + firstName.hashCode();
+        result = 31 * result + lastName.hashCode();
         result = 31 * result + account.hashCode();
         result = 31 * result + (type != null ? type.hashCode() : 0);
         result = 31 * result + (state != null ? state.hashCode() : 0);
+        result = 31 * result + (language != null ? language.hashCode() : 0);
         return result;
     }
 }
