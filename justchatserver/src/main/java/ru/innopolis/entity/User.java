@@ -1,5 +1,7 @@
 package ru.innopolis.entity;
 
+import org.eclipse.jetty.websocket.api.Session;
+
 /**
  * Created by ibrahim on 7/5/2017.
  */
@@ -13,6 +15,8 @@ public class User {
     private UserType type;
     private State state;
     private Language language;
+
+    private transient Session session;
 
     public User(Account account) {
         this.account = account;
@@ -78,6 +82,14 @@ public class User {
 
     public void setLanguage(Language language) {
         this.language = language;
+    }
+
+    public Session getSession() {
+        return session;
+    }
+
+    public void setSession(Session session) {
+        this.session = session;
     }
 
     @Override

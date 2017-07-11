@@ -1,6 +1,7 @@
 package ru.innopolis.justchat.view.fragment;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -23,6 +24,7 @@ import ru.innopolis.justchat.model.Language;
 import ru.innopolis.justchat.model.State;
 import ru.innopolis.justchat.model.User;
 import ru.innopolis.justchat.model.UserType;
+import ru.innopolis.justchat.view.ChatActivity;
 import ru.innopolis.justchat.view.IOptions;
 import ru.innopolis.justchat.view.adapter.LanguageRecyclerViewAdapter;
 
@@ -31,6 +33,7 @@ import ru.innopolis.justchat.view.adapter.LanguageRecyclerViewAdapter;
  */
 public class UserConfigurationFragment extends Fragment implements IOptions {
     public static final String USER = "user";
+
     private SharedDataManager sharedDataManager;
     private LanguageRecyclerViewAdapter adapter;
     private RecyclerView recyclerView;
@@ -92,13 +95,17 @@ public class UserConfigurationFragment extends Fragment implements IOptions {
         user.setLanguage(language);
         user.setState(State.WAITING);
 
-        connectMe.execute(user);
+        updateUserInfo.execute(user);
+
+        Intent intent = new Intent(getActivity(), ChatActivity.class);
+        intent.putExtra(ChatActivity.USER, user);
+        startActivity(intent);
     }
 
-    AsyncTask<User, Void, Void> connectMe = new AsyncTask<User, Void, Void>() {
+    AsyncTask<User, Void, Void> updateUserInfo = new AsyncTask<User, Void, Void>() {
         @Override
         protected Void doInBackground(User... users) {
-            NetworkManager.connection(users[0]);
+            NetworkManager.updateUserInformation(users[0]);
             return null;
         }
     };

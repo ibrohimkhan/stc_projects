@@ -3,13 +3,11 @@ package ru.innopolis;
 import com.google.gson.Gson;
 import ru.innopolis.entity.Account;
 import ru.innopolis.entity.RegistrationForm;
-import ru.innopolis.entity.State;
 import ru.innopolis.entity.User;
 import ru.innopolis.service.AccountService;
 import ru.innopolis.service.UserService;
 
-import static spark.Spark.port;
-import static spark.Spark.post;
+import static spark.Spark.*;
 
 /**
  * Created by ibrahim on 7/5/2017.
@@ -60,16 +58,20 @@ public class App {
             return result;
         });
 
-        post("/connect", ((request, response) -> {
+        post("/updateuserinfo", ((request, response) -> {
             Gson gson = new Gson();
             String body = request.body();
 
             User user = gson.fromJson(body, User.class);
-            UserService.updateUserState(user);
+            UserService.updateUser(user);
 
-            User user2 = null;
+            response.status(200);
+            response.type("application/json");
 
-            return null;
+            return response;
         }));
+
+        webSocket("/chat", null);
+        init();
     }
 }

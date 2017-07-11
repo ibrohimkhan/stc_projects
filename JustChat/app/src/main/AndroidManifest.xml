@@ -24,7 +24,8 @@
             android:name=".view.RegistrationActivity"
             android:label="Registration" />
         <activity android:name=".view.UserConfigurationActivity" />
-        <activity android:name=".view.BaseActivity"></activity>
+        <activity android:name=".view.BaseActivity" />
+        <activity android:name=".view.ChatActivity"></activity>
     </application>
 
 </manifest>

@@ -21,7 +21,7 @@ public class UserService {
         return userJDBC.findUserByAccount(account);
     }
 
-    public static void updateUserState(User user) {
+    public static void updateUser(User user) {
         userJDBC.updateUser(user);
     }
 }

@@ -69,7 +69,7 @@ public class UserJDBC implements IUser {
                     .addParameter("type", user.getType().name())
                     .addParameter("language", user.getLanguage().getLanguage())
                     .addParameter("id", user.getId())
-                    .executeUpdate().getResult();
+                    .executeUpdate();
         }
     }
 }

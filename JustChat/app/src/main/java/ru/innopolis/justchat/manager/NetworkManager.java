@@ -20,7 +20,7 @@ import ru.innopolis.justchat.model.User;
 public class NetworkManager {
 
     public static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
-    private static final String IP_ADDRESS = "http://10.240.19.71:4567";
+    private static final String IP_ADDRESS = "http://10.240.20.119:4567";
 
     public static User authenticate(Account account) {
         User user = null;
@@ -56,13 +56,11 @@ public class NetworkManager {
         return user;
     }
 
-    public static void connection(User user) {
+    public static void updateUserInformation(User user) {
         try {
             Gson gson = new Gson();
             String json = gson.toJson(user);
-            String responce = post(IP_ADDRESS + "/connect", json);
-
-            // something to do here
+            post(IP_ADDRESS + "/updateuserinfo", json);
 
         } catch (IOException e) {
             e.printStackTrace();
