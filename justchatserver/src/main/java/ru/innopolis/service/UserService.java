@@ -3,7 +3,6 @@ package ru.innopolis.service;
 import ru.innopolis.data.IUser;
 import ru.innopolis.data.UserJDBC;
 import ru.innopolis.entity.Account;
-import ru.innopolis.entity.State;
 import ru.innopolis.entity.User;
 
 /**

@@ -3,6 +3,8 @@ package ru.innopolis.justchat.websocket;
 import android.os.Handler;
 import android.os.Message;
 
+import com.google.gson.Gson;
+
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -10,6 +12,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.WebSocket;
 import okhttp3.WebSocketListener;
+import ru.innopolis.justchat.model.User;
 
 /**
  * Created by ibrahim on 7/11/2017.
@@ -69,9 +72,12 @@ public class ChatWebSocket {
         }
     }
 
-    public void connect(ServerListener _listener) {
+    public void connect(ServerListener _listener, User user) {
+        String json = new Gson().toJson(user);
+
         Request request = new Request.Builder()
                 .url(serverUrl)
+                .header("user", json)
                 .build();
 
         webSocket = httpClient.newWebSocket(request, new SocketListener());

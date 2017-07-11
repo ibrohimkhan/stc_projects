@@ -3,7 +3,6 @@ package ru.innopolis.data;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import ru.innopolis.entity.Account;
-import ru.innopolis.entity.State;
 import ru.innopolis.entity.User;
 
 /**

@@ -61,6 +61,20 @@ public class ChatFragment extends Fragment implements ChatWebSocket.ServerListen
         button = (Button) view.findViewById(R.id.send);
         button.setEnabled(false);
 
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String msg = editText.getText().toString();
+                if (msg == null || msg.isEmpty()) {
+                    Toast.makeText(getActivity(), "There is no data to send!", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                updateAdapterMessageList(msg);
+                chatWebSocket.sendMessage(msg);
+            }
+        });
+
         chatWebSocket = new ChatWebSocket(SERVER_URL);
         return view;
     }
@@ -68,24 +82,13 @@ public class ChatFragment extends Fragment implements ChatWebSocket.ServerListen
     @Override
     public void onResume() {
         super.onResume();
-        chatWebSocket.connect(this);
+        chatWebSocket.connect(this, user);
     }
 
     @Override
     public void onPause() {
         super.onPause();
         chatWebSocket.disconnect();
-    }
-
-    public void onTextSend(View view) {
-        String msg = editText.getText().toString();
-        if (msg == null || msg.isEmpty()) {
-            Toast.makeText(getActivity(), "There is no data to send!", Toast.LENGTH_LONG).show();
-            return;
-        }
-
-        updateAdapterMessageList(msg);
-        chatWebSocket.sendMessage(msg);
     }
 
     @Override

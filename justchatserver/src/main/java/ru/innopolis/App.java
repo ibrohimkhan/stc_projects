@@ -6,6 +6,7 @@ import ru.innopolis.entity.RegistrationForm;
 import ru.innopolis.entity.User;
 import ru.innopolis.service.AccountService;
 import ru.innopolis.service.UserService;
+import ru.innopolis.websocket.WebsocketHandler;
 
 import static spark.Spark.*;
 
@@ -16,6 +17,9 @@ public class App {
     public static void main(String[] args) {
 
         port(4567);
+
+        webSocket("/chat", WebsocketHandler.class);
+        init();
 
         post("/login", (request, response) -> {
             Gson gson = new Gson();
@@ -70,8 +74,5 @@ public class App {
 
             return response;
         }));
-
-        webSocket("/chat", null);
-        init();
     }
 }
