@@ -16,16 +16,15 @@
             android:label="Login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".view.RegistrationActivity"
             android:label="Registration" />
-        <activity android:name=".view.UserConfigurationActivity" />
+        <activity android:name=".view.UserConfigurationActivity" android:label="Languages" />
         <activity android:name=".view.BaseActivity" />
-        <activity android:name=".view.ChatActivity"></activity>
+        <activity android:name=".view.ChatActivity" android:label="Chat" />
     </application>
 
 </manifest>

@@ -50,7 +50,6 @@ public class Language {
         if (id != language1.id) return false;
         if (flag != language1.flag) return false;
         return language.equals(language1.language);
-
     }
 
     @Override

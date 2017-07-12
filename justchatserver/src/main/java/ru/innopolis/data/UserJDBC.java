@@ -64,9 +64,9 @@ public class UserJDBC implements IUser {
 
         try (Connection connection = sql2o.open()) {
             connection.createQuery(sql)
-                    .addParameter("state", user.getState().name())
-                    .addParameter("type", user.getType().name())
-                    .addParameter("language", user.getLanguage().getLanguage())
+                    .addParameter("state", user.getState() == null ? null : user.getState().name())
+                    .addParameter("type",  user.getType() == null ? null : user.getType().name())
+                    .addParameter("language", user.getLanguage() == null ? null : user.getLanguage().getLanguage())
                     .addParameter("id", user.getId())
                     .executeUpdate();
         }
