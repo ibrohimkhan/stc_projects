@@ -70,7 +70,7 @@ public class ChatFragment extends Fragment implements ChatWebSocket.ServerListen
                     return;
                 }
 
-                updateAdapterMessageList(msg);
+                updateAdapterMessageList("Me:\n" + msg);
                 chatWebSocket.sendMessage(msg);
 
                 editText.setText(null);

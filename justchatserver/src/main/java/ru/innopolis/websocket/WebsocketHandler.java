@@ -12,7 +12,6 @@ import ru.innopolis.logic.UserPairing;
 import ru.innopolis.service.UserService;
 
 import java.io.IOException;
-import java.util.Map;
 
 /**
  * Created by ibrahim on 7/11/2017.
@@ -69,7 +68,7 @@ public class WebsocketHandler {
         sender.setState(State.ACTIVE);
         reciever.setState(State.ACTIVE);
 
-        reciever.getSession().getRemote().sendString(message); // and send it back
+        reciever.getSession().getRemote().sendString(sender.getFirstName() + ":\n" + message); // and send it back
     }
 
 }
