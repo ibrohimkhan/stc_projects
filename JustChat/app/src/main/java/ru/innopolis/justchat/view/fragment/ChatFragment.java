@@ -101,6 +101,7 @@ public class ChatFragment extends Fragment implements ChatWebSocket.ServerListen
     @Override
     public void onStatusChange(ChatWebSocket.ConnectionStatus status) {
         String currentStatus = (status == ChatWebSocket.ConnectionStatus.CONNECTED) ? "CONNECTED" : "DISCONNECTED";
+        updateAdapterMessageList("You are: " + currentStatus);
         button.setEnabled(status == ChatWebSocket.ConnectionStatus.CONNECTED);
     }
 
