@@ -39,7 +39,7 @@ public class ChatWebSocket {
 
     public ChatWebSocket(String serverUrl) {
         httpClient = new OkHttpClient.Builder()
-                .readTimeout(30, TimeUnit.SECONDS)
+                .readTimeout(0, TimeUnit.SECONDS) //30
                 .retryOnConnectionFailure(true)
                 .build();
 
